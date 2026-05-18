@@ -43,4 +43,13 @@ pipeline {
         }
 
     }
+
+    post {
+        failure {
+            emailext body: 'Ce Build $BUILD_NUMBER a échoué',
+                recipientProviders: [requestor()],
+                subject: 'Build échoué',
+                to: 'ton-email@gmail.com'
+        }
+    }
 }
